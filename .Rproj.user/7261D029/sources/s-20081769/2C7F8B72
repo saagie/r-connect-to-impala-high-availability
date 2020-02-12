@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1581440164822.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "2C7F8B72",
+    "lastKnownWriteTime" : 1581441355,
+    "last_content_update" : 1581441355441,
+    "path" : "~/connectIMPALA/man/random_node_connect.Rd",
+    "project_path" : "man/random_node_connect.Rd",
+    "properties" : {
+        "cursorPosition" : "55,1",
+        "scrollLine" : "51",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_doc"
+}
