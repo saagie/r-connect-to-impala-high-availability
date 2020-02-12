@@ -7,6 +7,9 @@
 
 # User-specific files
 .Ruserdata
+.Rbuildignore
+.Rproj.user/
+NAMESPACE
 
 # Example code in package build process
 *-Ex.R
