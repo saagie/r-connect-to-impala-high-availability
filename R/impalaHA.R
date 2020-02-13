@@ -1,9 +1,10 @@
 ### Functions are built to ensure random node connexion to impala ###
-#Load of odbc package
+#Load of odbc and httr package
 library(odbc)
+library(httr)
 
 #Test for working node in the list provided, return a named vector (true/false)
-test_datanode <- function(x, user, password, timeout){
+check_datanodes <- function(host, port, schema, user, password, timeout){
   tryCatch(
     expr = {
       before <- getTaskCallbackNames()
@@ -11,9 +12,9 @@ test_datanode <- function(x, user, password, timeout){
                            Driver   = ifelse(.Platform$OS.type == "windows",
                                              "Cloudera ODBC Driver for Impala",
                                              "Cloudera ODBC Driver for Impala 64-bit"),
-                           Host     =  x,
-                           Port     = 21050,
-                           Schema   = "default",
+                           Host     = host,
+                           Port     = port,
+                           Schema   = schema,
                            AuthMech = 3,
                            UseSASL  = 1,
                            UID      = user,
@@ -33,29 +34,34 @@ test_datanode <- function(x, user, password, timeout){
 
 
 # Allow to set a up a random node connexion
-random_node_connect <- function(nodelist, user, password, timeout = 0.5){
+random_node_connect <- function(nodelist, port, schema,user, password, timeout = 0.5){
   if(missing(nodelist)){
     stop("nodelist is mandatory, please provide it.", call. = FALSE)
   }
   if(missing(user) | missing(password)){
     stop("user or passsword is missing, please provide it.", call. = FALSE)
   }
+
   #Get a vector TRUE/FALSE for responding nodes
-  answered <- sapply(DATANODES, test_datanode, user = user, password = password,  timeout = timeout)
+  answered <- sapply(nodelist, check_datanodes, port = port, schema= schema, user = user, password = password,  timeout = timeout)
+
   #Get the names of the reponding nodes
   nodes_names <- names(answered[answered == TRUE])
+
   #Choose a random one :
   rand_node <- nodes_names[sample(1:length(nodes_names), 1)]
+
   #Message with dn choosen
   message(paste0("Connection to : ", rand_node))
+
   #return connexion object randomly choosen in the list of available working nodes
   return(DBI::dbConnect(odbc::odbc(),
                         Driver   = ifelse(.Platform$OS.type == "windows",
                                           "Cloudera ODBC Driver for Impala",
                                           "Cloudera ODBC Driver for Impala 64-bit"),
-                        Host     =rand_node,
-                        Port     = 21050,
-                        Schema   = "default",
+                        Host     = rand_node,
+                        Port     = port,
+                        Schema   = schema,
                         AuthMech = 3,
                         UseSASL  = 1,
                         UID      = user,

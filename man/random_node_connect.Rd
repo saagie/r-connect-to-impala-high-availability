@@ -16,6 +16,11 @@ random_node_connect(x)
    \item{nodelist }{ A list of datanodes, eg: c("dn1","dn2","dn3", "dn4", "dn5", "dn6)
 %%     ~~Describe \code{x} here~~
 }
+
+ \item{port}{ Port, eg: 21050 for IMPALA
+ }
+
+ \item{schema}{Schema in which to execute the queries}
  \item{user}{ Login of user
  }
  \item{password}{Password of user}

@@ -1,20 +1,25 @@
-\name{test_datanode}
-\alias{test_datanode}
+\name{check_datanodes}
+\alias{check_datanodes}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{ test_datanode
+\title{ check_datanodes
 %%  ~~function to do ... ~~
 }
 \description{ Return a named vector that indicates if a datanode is active(true) or not (false)
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-test_datanode(x)
+check_datanodes(host, port, schema,user, password, timeout)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{ A list of datanodes, eg: c("dn1","dn2","dn3", "dn4", "dn5", "dn6)
+  \item{host}{ A list of datanodes, eg: c("dn1","dn2","dn3", "dn4", "dn5", "dn6)
 %%     ~~Describe \code{x} here~~
 }
+ \item{port}{ Port, eg: 21050 for IMPALA
+ }
+
+ \item{schema}{Schema in which to execute the queries}
+
  \item{user}{ Login of user
  }
  \item{password}{Password of user}
