@@ -1,6 +1,6 @@
 # r-connect-to-impala-high-availability
 Package that you can use to connect to Impala with a random active datanode
-
+Tutorial: https://saagie.zendesk.com/hc/en-us/articles/360011853619-Impala-with-high-availability
 ### How to use
 1. First,you need to install the devtools package:
 ``` 
